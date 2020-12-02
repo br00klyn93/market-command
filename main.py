@@ -104,7 +104,7 @@ def get_current_securities():
 
 
     bought = []
-    out = "["
+    out = "[stocks: ["
 
     for stock_data in stock_list:
         stock_data_text = [s.getText() for s in stock_data]
@@ -120,14 +120,15 @@ def get_current_securities():
             bought.append(sec)
 
     for i in bought:
-        out+='"symbol:" "'+str(getattr(i,symbol))+'":'
-        out+='"description:" "'+str(getattr(i,description))+'",'
-        out+='"quantity:" "'+str(getattr(i,quantity))+'",'
-        out+='"purchase_price:" "'+str(getattr(i,purchase_price))+'",'
-        out+='"current_price:" "'+str(getattr(i,current_price))+'",'
-        out+='"description:" "'+str(getattr(i,current_value))+'",'
+        out+='{"symbol": "'+str(getattr(i,"symbol"))+'",'
+        out+='"description": "'+str(getattr(i,"description"))+'",'
+        out+='"quantity": "'+str(getattr(i,"quantity"))+'",'
+        out+='"purchase_price": "'+str(getattr(i,"purchase_price"))+'",'
+        out+='"current_price": "'+str(getattr(i,"current_price"))+'",'
+        out+='"description": "'+str(getattr(i,"current_value"))+'"},'
 
     out+="]"
+    
     return(str(out))
 
 
