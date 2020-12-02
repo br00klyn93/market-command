@@ -126,7 +126,7 @@ def get_current_securities():
         out+='"quantity": "'+str(getattr(bought[i],"quantity"))+'",'
         out+='"purchase_price": "'+str(getattr(bought[i],"purchase_price"))+'",'
         out+='"current_price": "'+str(getattr(bought[i],"current_price"))+'",'
-        out+='"total_value": "'+str(getattr(bought[i],"current_value"))+'"},'
+        out+='"total_value": "'+str(getattr(bought[i],"current_value"))+'",'
         out+='"logo_url": "'+str(get_logo(str(getattr(bought[i],"symbol"))))+'"}'
         if i != len(bought)-1:
             out+=","
