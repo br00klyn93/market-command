@@ -1,3 +1,5 @@
+Flask
+gunicorn
 bs4
 mechanicalsoup
 requests
