@@ -32,6 +32,8 @@ browser = mechanicalsoup.StatefulBrowser()
 # Login page for the trading game
 login_page = browser.open("https://investopedia.com/accounts/login.aspx?returnurl=http://www.investopedia.com/simulator/")
 
+@app.route('/')
+return("Alive an well.")
 
 @app.route('/status')
 def get_portfolio_status():
