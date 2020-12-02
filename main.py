@@ -88,6 +88,7 @@ def get_current_securities():
     # LOG IN
     home_page = login(email,pw)
 
+    symbol = request.args['symbol']
     info_type = request.args['info_type']
 
     response = browser.open("https://investopedia.com/simulator/portfolio/")
@@ -117,7 +118,8 @@ def get_current_securities():
             )
             bought.append(sec)
 
-    return(str(getattr(bought[0], info_type)))
+    return(str(bought))
+
 
 
 
