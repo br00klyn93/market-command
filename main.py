@@ -117,7 +117,7 @@ def get_current_securities():
             )
             bought.append(sec)
 
-    return(getattr(bought[0], info_type))
+    return(str(getattr(bought[0], info_type)))
 
 
 
