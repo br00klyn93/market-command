@@ -119,15 +119,20 @@ def get_current_securities():
             )
             bought.append(sec)
 
+    x = 0
     for i in bought:
         out+='{"symbol": "'+str(getattr(i,"symbol"))+'",'
         out+='"description": "'+str(getattr(i,"description"))+'",'
         out+='"quantity": "'+str(getattr(i,"quantity"))+'",'
         out+='"purchase_price": "'+str(getattr(i,"purchase_price"))+'",'
         out+='"current_price": "'+str(getattr(i,"current_price"))+'",'
-        out+='"description": "'+str(getattr(i,"current_value"))+'"},'
+        out+='"description": "'+str(getattr(i,"current_value"))+'"}'
+        if(x != len(bought)):
+            str+=","
 
-    out+="}"
+        x+=1
+
+    out+="]}]"
 
     return(str(out))
 
