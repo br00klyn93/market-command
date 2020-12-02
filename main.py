@@ -77,8 +77,8 @@ def get_portfolio_status():
 def login(user,pw):
     #Elements of the login page form
     login_form = login_page.soup.select("form")[0]
-    login_form.select("#username")[0]["value"] = email
-    login_form.select("#password")[0]["value"] = password
+    login_form.select("#username")[0]["value"] = user
+    login_form.select("#password")[0]["value"] = pw
     home_page = browser.submit(login_form, login_page.url)
 
     # MAYBE AN ISSUE?
