@@ -74,7 +74,7 @@ def get_portfolio_status():
     return(info_type)
 
 
-def login(user,pass):
+def login(user,pw):
     #Elements of the login page form
     login_form = login_page.soup.select("form")[0]
     login_form.select("#username")[0]["value"] = email
