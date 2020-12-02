@@ -71,7 +71,7 @@ def get_portfolio_status():
     cash = float(re.sub(regexp, '', cash))
     annual_return = float(re.sub(regexp, '', annual_return))
 
-    return(info_type)
+    return(account_value)
 
 
 def login(user,pw):
