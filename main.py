@@ -88,8 +88,8 @@ def get_current_securities():
     # LOG IN
     home_page = login(email,pw)
 
-    symbol = request.args['symbol']
-    info_type = request.args['info_type']
+    # symbol = request.args['symbol']
+    # info_type = request.args['info_type']
 
     response = browser.open("https://investopedia.com/simulator/portfolio/")
     soup = BeautifulSoup(response.content, "html.parser")
