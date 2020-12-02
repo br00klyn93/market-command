@@ -80,6 +80,46 @@ def get_portfolio_status():
     else:
         return None
 
+@app.route('/securities')
+def get_current_securities():
+    email = request.args['email']
+    pw = request.args['pw']
+
+    # LOG IN
+    home_page = login(email,pw)
+
+    info_type = request.args['info_type']
+
+    response = browser.open("https://investopedia.com/simulator/portfolio/")
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    stock_table = soup.find("table", id="stock-portfolio-table").find("tbody")
+
+    if stock_table is not None:
+        stock_list = stock_table.find_all("tr")[:-1]
+        stock_list = [s.find_all("td")[-8:-2] for s in stock_list]
+    else:
+        stock_list = []
+
+
+    bought = []
+
+    for stock_data in stock_list:
+        stock_data_text = [s.getText() for s in stock_data]
+        if len(stock_data_text) == 6:
+            sec = Security(
+                symbol=stock_data_text[0],
+                description=stock_data_text[1],
+                quantity=int(stock_data_text[2]),
+                purchase_price=float(stock_data_text[3][1:].replace(",", "")),
+                current_price=float(stock_data_text[4][1:].replace(",", "")),
+                current_value=float(stock_data_text[5][1:].replace(",", ""))
+            )
+            bought.append(sec)
+
+    return(getattr(bought[0], info_type))
+
+
 
 
 def login(user,pw):
