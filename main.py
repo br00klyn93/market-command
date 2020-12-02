@@ -33,7 +33,8 @@ browser = mechanicalsoup.StatefulBrowser()
 login_page = browser.open("https://investopedia.com/accounts/login.aspx?returnurl=http://www.investopedia.com/simulator/")
 
 @app.route('/')
-return 'Alive an well.'
+def main():
+    return('Alive an well.')
 
 
 @app.route('/status')
