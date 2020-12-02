@@ -126,7 +126,8 @@ def get_current_securities():
         out+='"quantity": "'+str(getattr(bought[i],"quantity"))+'",'
         out+='"purchase_price": "'+str(getattr(bought[i],"purchase_price"))+'",'
         out+='"current_price": "'+str(getattr(bought[i],"current_price"))+'",'
-        out+='"total_value": "'+str(getattr(bought[i],"current_value"))+'"}'
+        out+='"total_value": "'+str(getattr(bought[i],"current_value"))+'"},'
+        out+='"logo_url": "'+str(get_logo(str(getattr(bought[i],"symbol"))))+'"}'
         if i != len(bought)-1:
             out+=","
 
@@ -150,6 +151,21 @@ def login(user,pw):
 
     # MAYBE AN ISSUE?
     return(home_page)
+
+
+def get_quote(symbol):
+    import yfinance as yf
+
+    stock = yf.Ticker(symbol)
+
+    return stock.info["ask"]
+
+def get_logo(symbol):
+    import yfinance as yf
+
+    stock = yf.Ticker(symbol)
+
+    return stock.info["logo_url"]
 
 
 
