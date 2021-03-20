@@ -149,7 +149,7 @@ def getspy():
 
     data = sp.history(period="5d")
 
-    return data.to_json(orient='index', indent=2))
+    return data.to_json(orient='index', indent=2)
 
 
 def login(user,pw):
