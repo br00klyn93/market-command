@@ -143,7 +143,13 @@ def get_current_securities():
     return(str(out))
 
 
+@app.route('/getspy')
+def getspy():
+    sp = yf.Ticker("SPY")
 
+    data = sp.history(period="5d")
+
+    return data.to_json(orient='index', indent=2))
 
 
 def login(user,pw):
@@ -156,13 +162,6 @@ def login(user,pw):
     # MAYBE AN ISSUE?
     return(home_page)
 
-
-def getspy():
-    sp = yf.Ticker("SPY")
-
-    data = sp.history(period="5d")
-
-    return data.to_json(orient='index', indent=2))
 
 def get_quote(symbol):
     stock = yf.Ticker(symbol)
