@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template, redirect
 from flask import make_response, Response
 
+import yfinance as yf
+
 import urllib.parse, urllib.request
 
 import requests
@@ -11,6 +13,8 @@ from collections import namedtuple
 from enum import Enum
 
 app = Flask(__name__)
+
+
 
 # email = "s-mclauryb@bsd405.org"
 # password = "Brooklyn611!"
@@ -153,19 +157,23 @@ def login(user,pw):
     return(home_page)
 
 
-def get_quote(symbol):
-    import yfinance as yf
+def getspy():
+    sp = yf.Ticker("SPY")
 
+    data = sp.history(period="5d")
+
+    return data.to_json(orient='index', indent=2))
+
+def get_quote(symbol):
     stock = yf.Ticker(symbol)
 
     return stock.info["ask"]
 
 def get_logo(symbol):
-    import yfinance as yf
-
     stock = yf.Ticker(symbol)
 
     return stock.info["logo_url"]
+
 
 
 
