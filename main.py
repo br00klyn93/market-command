@@ -143,14 +143,6 @@ def get_current_securities():
     return(str(out))
 
 
-@app.route('/getspy')
-def getspy():
-    sp = yf.Ticker("SPY")
-
-    data = sp.history(period="5d")
-
-    return data.to_json(orient='columns', indent=2, date_format='iso')
-
 
 def login(user,pw):
     #Elements of the login page form
@@ -172,6 +164,15 @@ def get_logo(symbol):
     stock = yf.Ticker(symbol)
 
     return stock.info["logo_url"]
+
+
+@app.route('/getspy')
+def getspy():
+    sp = yf.Ticker("SPY")
+
+    data = sp.history(period="5d")
+
+    return data.to_json(orient='columns', indent=2, date_format='iso')
 
 
 
